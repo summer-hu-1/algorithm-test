@@ -12,5 +12,6 @@ public:
     vector<int> sortedSquares(vector<int>& nums);
     int minSubArrayLen(int target, vector<int>& nums);
     vector<vector<int>> generateMatrix(int n);
+    void practice();
 };
 

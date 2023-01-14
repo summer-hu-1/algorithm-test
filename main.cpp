@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "listTest.h"
 #include "Tools.h"
 using namespace std;
 
@@ -33,12 +34,47 @@ void testArray()
 	tool.printDoubleVector(testArray.generateMatrix(3));
 }
 
+/// <summary>
+/// ≤‚ ‘¡¥±Ì
+/// </summary>
+/// <returns></returns>
+void testList()
+{
+	ListTest testList;
+	/*cout << "test for List algorithm:" << endl;
+	ListNode* list = tool.getSingleLinkedList({1, 10, 2, 10, 5, 10, 4});
+	tool.printList(list);
+	testList.removeElements(list, 10);
+	cout << "test after rectify:" << endl;
+	tool.printList(list);
+	tool.deleteList(list);*/
+	
+	MyLinkedList* myList = new MyLinkedList();
+	myList->addAtHead(7);
+	myList->addAtHead(2);
+	myList->addAtHead(1);
+	myList->printList();
+
+	myList->addAtIndex(3, 0);
+	myList->printList();
+	myList->deleteAtIndex(2);
+	myList->printList();
+	myList->addAtHead(6);
+	myList->printList();
+	myList->addAtTail(4);
+	cout << "myList->get(4):" << myList->get(4);
+	myList->addAtHead(4);
+	myList->printList();
+	myList->addAtIndex(5, 0);
+	myList->printList();
+	myList->addAtHead(6);
+	myList->printList();
+}
+
 int main()
 {
-	/// <summary>
-	/// ≤‚ ‘¡¥±Ì
-	/// </summary>
-	/// <returns></returns>
+	srand(time(0));
 
+	testList();
 	return 0;
 }

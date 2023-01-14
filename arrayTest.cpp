@@ -253,4 +253,30 @@ vector<vector<int>> arrayTest::generateMatrix(int n)
     }
     return ans;*/
 }
+
+void arrayTest::practice()
+{
+    int n = 10;
+
+    vector<vector<int>> ans(n, vector<int>(n, 0));
+    int up = 0, down = n - 1, left = 0, right = n - 1;
+    int index = 1;
+    int i = 0, j = 0;
+    while (index <= n * n)
+    {
+        for (j = left; j <= right; j++)
+            ans[i][j] = index++;
+        j--; up++;
+        for (i = up; i <= down; i++)
+            ans[i][j] = index++;
+        i--; right--;
+        for (j = right; j >= left; j--)
+            ans[i][j] = index++;
+        j++; down--;
+        for (i = down; i >= up; i--)
+            ans[i][j] = index++;
+        i++; left++;
+    }
+    ///return ans;
+}
  
