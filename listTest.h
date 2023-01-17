@@ -40,5 +40,6 @@ class ListTest
 {
 public:
 	ListNode* removeElements(ListNode* head, int val);
+	ListNode* reverseList(ListNode* head);
 };
 

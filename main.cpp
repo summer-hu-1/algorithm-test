@@ -41,20 +41,23 @@ void testArray()
 void testList()
 {
 	ListTest testList;
-	/*cout << "test for List algorithm:" << endl;
+
+	///one:
+	cout << "test for List algorithm:" << endl;
 	ListNode* list = tool.getSingleLinkedList({1, 10, 2, 10, 5, 10, 4});
 	tool.printList(list);
 	testList.removeElements(list, 10);
 	cout << "test after rectify:" << endl;
 	tool.printList(list);
-	tool.deleteList(list);*/
-	
+	tool.deleteList(list);
+
+	///two:
+	cout << "test MyLinkedList: " << endl;
 	MyLinkedList* myList = new MyLinkedList();
 	myList->addAtHead(7);
 	myList->addAtHead(2);
 	myList->addAtHead(1);
 	myList->printList();
-
 	myList->addAtIndex(3, 0);
 	myList->printList();
 	myList->deleteAtIndex(2);
@@ -69,6 +72,15 @@ void testList()
 	myList->printList();
 	myList->addAtHead(6);
 	myList->printList();
+
+	///three:
+	cout << "test for reverseList: " << endl;
+	ListNode* list2 = tool.getSingleLinkedList({ 1, 2, 3, 4, 5, 6, 7 });
+	tool.printList(list2);
+	ListNode* list22 = testList.reverseList(list2);
+	cout << "test after rectify:" << endl;
+	tool.printList(list22);
+	tool.deleteList(list2);
 }
 
 int main()

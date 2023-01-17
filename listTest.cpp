@@ -9,12 +9,13 @@ MyLinkedList::MyLinkedList()
 
 int MyLinkedList::get(int index)
 {
-	if (index < 0 || index >= size)  //条件判断失误导致
+	if (index < 0 || index >= size)  ///bug one: 条件判断失误导致
 		return -1;
 	ListNode* cur = dummyHead->next;  ///理解当前节点就是待输出节点。
-	while (index-- && cur)
+	while (index && cur)
 	{
 		cur = cur->next;
+		index--;
 	}
 	return cur->val;
 }
@@ -46,9 +47,10 @@ void MyLinkedList::addAtIndex(int index, int val)
 	else
 	{
 		ListNode* pre = dummyHead;
-		while (index--)
+		while (index)
 		{
 			pre = pre->next;
+			index--;
 		}
 		ListNode* newNode = new ListNode(val, pre->next);
 		pre->next = newNode;
@@ -61,8 +63,12 @@ void MyLinkedList::deleteAtIndex(int index)
 	if (index < 0 || index >= size)
 		return;
 	ListNode* pre = dummyHead;
-	while (index--)
+	while (index)  ///bug two:可以写成while(--index)  但一般不写成while(index--).
+	{
 		pre = pre->next;
+		index--;
+	}
+		
 	ListNode* tmp = pre->next;
 	pre->next = pre->next->next;
 	delete tmp;
@@ -79,7 +85,8 @@ void MyLinkedList::printList()
 		cout << cur->val << " ";
 	}
 }
-
+///一些思考：处理链表问题首先定好原则：1.size是大小， index是下标（0开始） 3.是否需要头节点
+///4.先接链，再断链为原则。  
 
 ListNode* ListTest::removeElements(ListNode* head, int val)
 {
@@ -125,4 +132,36 @@ ListNode* ListTest::removeElements(ListNode* head, int val)
 	}
 	return dummy.next;
 	///一些思考：直接利用前驱节点来处理流动，下一个节点（为主节点）实现节点的当前值判定和删除等操作。
+}
+
+ListNode* ListTest::reverseList(ListNode* head)
+{
+	///方法一：双指针法
+	/*if (head == nullptr)
+		return nullptr;
+
+	ListNode* pre = head;
+	ListNode* cur = head->next;
+	while (cur)
+	{
+		ListNode* temp = cur->next;
+		cur->next = pre;
+		pre = cur;
+		cur = temp;
+	}
+	return  pre;*/
+
+	///方法二：
+	ListNode* pre = nullptr;
+	ListNode* cur = head;
+	while (cur)
+	{
+		ListNode* next = cur->next;
+		cur->next = pre;
+		pre = cur;
+		cur = next;
+	}
+	return pre;
+
+	///一些思考：1.前一个指针首先未空， 2.保留下一个指针， 3.当前指针是否为空 未判定依据。
 }
