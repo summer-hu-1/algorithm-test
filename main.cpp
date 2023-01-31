@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "CharTest.h"
 #include "listTest.h"
 #include "Tools.h"
 using namespace std;
@@ -83,10 +84,27 @@ void testList()
 	tool.deleteList(list2);
 }
 
+/**
+ * \brief ²âÊÔ×Ö·û´®ÀàĞÍ
+ */
+void testChar()
+{
+	CharTest test;
+	int n = 6;
+	char* str = new char[n];
+	for (int i = 0; i < 5; ++i)
+		*(str + i) = 'a' + i;
+	*(str + 5) = '\0';
+	cout << str << endl;
+	cout << "after transfer to upper:" << test._strupr(str);
+
+}
+
 int main()
 {
 	srand(time(0));
 
-	testList();
+	testChar();
+
 	return 0;
 }

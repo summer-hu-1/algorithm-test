@@ -136,6 +136,9 @@ ListNode* ListTest::removeElements(ListNode* head, int val)
 
 ListNode* ListTest::reverseList(ListNode* head)
 {
+	///方法三：递归法
+	
+
 	///方法一：双指针法
 	/*if (head == nullptr)
 		return nullptr;
@@ -151,7 +154,7 @@ ListNode* ListTest::reverseList(ListNode* head)
 	}
 	return  pre;*/
 
-	///方法二：
+	///方法二：简洁版本
 	ListNode* pre = nullptr;
 	ListNode* cur = head;
 	while (cur)
@@ -163,5 +166,5 @@ ListNode* ListTest::reverseList(ListNode* head)
 	}
 	return pre;
 
-	///一些思考：1.前一个指针首先未空， 2.保留下一个指针， 3.当前指针是否为空 未判定依据。
+	///一些思考：1.前一个指针首先未空， 2.保留下一个指针， 3.当前指针是否为空 未判定依据
 }
