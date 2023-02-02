@@ -168,3 +168,172 @@ ListNode* ListTest::reverseList(ListNode* head)
 
 	///一些思考：1.前一个指针首先未空， 2.保留下一个指针， 3.当前指针是否为空 未判定依据
 }
+
+ListNode* ListTest::swapPairs(ListNode* head)
+{
+	/// 方法一：模拟法 后者两两交换即可。
+	ListNode dummy(0, head);
+	ListNode* cur = head;
+	ListNode* pre = &dummy;
+	while (cur && cur->next)
+	{
+		ListNode* temp = cur->next;
+		cur->next = temp->next;  ///
+		temp->next = cur;  /// 
+		pre->next = temp;  ///
+		pre = cur;
+		cur = cur->next;
+	}
+		return dummy.next;
+	///一些思考：保存后一个结点，连接后、中和前。
+
+	///方法二：简洁版本  
+	/*ListNode dummyHead(0, head);
+	ListNode* cur = &dummyHead;
+	while (cur->next && cur->next->next) {
+		ListNode* temp1 = cur->next;
+		ListNode* temp2 = cur->next->next;
+		ListNode* temp3 = cur->next->next->next;
+
+		cur->next = temp2;
+		cur->next->next = temp1;
+		cur->next->next->next = temp3;
+		cur = cur->next->next;
+	}
+	return dummyHead.next;*/
+
+	///一些思考：利用链表连接特性，逐个连接待链接的结点。
+	///1.保存下三个结点
+	///2.利用当前结点逐个链接对应结点即可
+	///3.移动当前结点到对应位置。
+}
+
+ListNode* ListTest::removeNthFromEnd(ListNode* head, int n)
+{
+	///方法一：双指针
+	//目的：slow指向待删除前缀，而fast指向链表末尾空指针时，slow与fast相距n+1个间隔
+	/*ListNode dummy(0, head);
+	ListNode* slow = &dummy;
+	ListNode* fast = dummy.next;
+
+	while (n--) {
+		fast = fast->next;
+	}
+	while (fast) {
+		fast = fast->next;
+		slow = slow->next;
+	}
+	ListNode* temp = slow->next;
+	slow->next = temp->next;
+	delete temp;
+	return dummy.next;*/
+
+	///方法二：
+	///核心：采用双指针的处理方式。
+	///一些思考：while (n--)可以实现指针后移n步；
+	///一些思考：保留的是待删除结点的前驱指针。
+	ListNode dummy(0, head);
+	ListNode* slow = &dummy;
+	ListNode* fast = &dummy;
+	while (n--) {
+		fast = fast->next;
+	}
+	while (fast->next) {
+		fast = fast->next;
+		slow = slow->next;
+	}
+	ListNode* temp = slow->next;
+	slow->next = temp->next;
+	delete temp;
+	return dummy.next;
+}
+
+ListNode* ListTest::getIntersectionNode(ListNode* headA, ListNode* headB)
+{
+	///方法一： 模拟法
+	///模拟法处理方式：首先找到相同的起点位置，同时移动，点相同则结果正确。
+	/*int m = 0, n = 0;
+	ListNode* cur = headA;
+	while (cur) {
+		m++;
+		cur = cur->next;
+	}
+	cur = headB;
+	while (cur) {
+		n++;
+		cur = cur->next;
+	}
+	int diff = m - n;
+	if (diff < 0) {
+		diff = -diff;
+		while (diff--) {
+			headB = headB->next;
+		}
+	}
+	else {
+		while (diff--) {
+			headA = headA->next;
+		}
+	}
+
+	while (headA && headB && headA != headB) {
+		headA = headA->next;
+		headB = headB->next;
+	}
+	return headA;*/
+
+	///方法二：二者相互连接，构成新的等长字段
+	///可以共同指向空指针的位置
+	ListNode* pA = headA;
+	ListNode* pB = headB;
+
+	while (pA != pB) {
+		pA = pA == nullptr ? headB : pA->next;
+		pB = pB == nullptr ? headA : pB->next;
+	}
+	return pA;
+	///一些思考：两者长度一定相同，切换过程中会有一个nullptr的过渡结点。如果有相同，最后结尾必然相同 。
+	///如果没有相同，最后必然都面临空指针。
+}
+
+ListNode* ListTest::detectCycle(ListNode* head)
+{
+
+	/// 方法：快慢指针
+	/*ListNode* slow = head;
+	ListNode* fast = head;
+	while (true)
+	{
+		if (!fast || !fast->next || !fast->next->next)
+		{
+			return nullptr;
+		} 
+		fast = fast->next->next;
+		slow = slow->next;
+
+		if (fast == slow)
+			break;
+	}
+	slow = head;
+	while (slow != fast)
+	{
+		slow = slow->next;
+		fast = fast->next;
+	}
+	return slow;*/
+	///一些思考：学会设置变量，分清楚各自的所求量》x-待求值,y相遇值,r环形值。
+	///重点记住此类算法思维，快慢指针判存在->两倍关系倒推初遇点
+	///(快指针花了两辈子（x + n*r)，才等到一辈子的真爱(x + y)，并在最终携手走过一段美好时光（y);
+
+
+	///方法二:面试简洁版本
+	ListNode* slow = head;
+	ListNode* fast = head;
+	while (fast->next && fast->next->next)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+
+
+	}
+}

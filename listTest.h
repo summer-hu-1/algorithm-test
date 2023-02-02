@@ -41,5 +41,9 @@ class ListTest
 public:
 	ListNode* removeElements(ListNode* head, int val);
 	ListNode* reverseList(ListNode* head);
+	ListNode* swapPairs(ListNode* head);
+	ListNode* removeNthFromEnd(ListNode* head, int n);
+	ListNode* getIntersectionNode(ListNode* headA, ListNode* headB);
+	ListNode* detectCycle(ListNode* head);
 };
 

@@ -82,6 +82,9 @@ void testList()
 	cout << "test after rectify:" << endl;
 	tool.printList(list22);
 	tool.deleteList(list2);
+
+	///four:
+	
 }
 
 /**
@@ -104,7 +107,6 @@ int main()
 {
 	srand(time(0));
 
-	testChar();
-
+	testList();
 	return 0;
 }
