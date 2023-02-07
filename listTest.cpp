@@ -334,6 +334,17 @@ ListNode* ListTest::detectCycle(ListNode* head)
 		slow = slow->next;
 		fast = fast->next->next;
 
-
+		if (slow == fast)
+		{
+			ListNode* index1 = head;
+			ListNode* index2 = slow;
+			while (index1 != index2)
+			{
+				index1 = index1->next;
+				index2 = index2->next;
+			}
+			return index1;
+		}
 	}
+	return nullptr;
 }
