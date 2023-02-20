@@ -35,6 +35,17 @@ bool hashTest::isAnagram(string s, string t)
 
 vector<int> hashTest::intersection(vector<int>& nums1, vector<int>& nums2)
 {
-	vector<int> ans;
-	return {};
+	///核心思想：采用hash的方式实现去重。利用find函数快速查找。
+	unordered_set<int> ans;
+	unordered_set<int> set(nums2.begin(), nums2.end());
+
+	for (auto val : nums1)
+	{
+		if (set.find(val) != set.end())
+		{
+			ans.emplace(val);
+		}
+	}
+	
+	return vector<int>(ans.begin(), ans.end());
 }
