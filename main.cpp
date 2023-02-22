@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "CharTest.h"
+#include "hashTest.h"
 #include "listTest.h"
 #include "Tools.h"
 using namespace std;
@@ -101,12 +102,25 @@ void testChar()
 	cout << str << endl;
 	cout << "after transfer to upper:" << test._strupr(str);
 
+	string str1("(*.PNG;)");
+	test.removeFilterSemicolon(str1);
+	cout << "removeFilterSemicolon: str:" << str1 << endl;
 }
 
+/**
+ * \brief ²âÊÔ¹þÏ£×Ö·û´®
+ */
+void testHash()
+{
+	hashTest test;
+	cout << "test for twoSum:" << endl;
+	vector<int> num{ 2, 7, 11, 15 };
+	tool.printVector(test.twoSum(num, 9));
+
+}
 int main()
 {
 	srand(time(0));
-
-	testList();
+	testHash();
 	return 0;
 }

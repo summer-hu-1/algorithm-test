@@ -72,3 +72,20 @@ int CharTest::StrCmpLogicalW_Imitate(char* csText1, char* csText2)
     //}
     return 0;
 }
+
+void CharTest::removeFilterSemicolon(string& str)
+{
+    int flag = false;
+    for (char& ch : str)
+    {
+        if (ch == '(')
+            flag = true;
+
+        if (ch == ')')
+            flag = true;
+        if (ch == ';' && flag)
+        {
+            ch = ' ';
+        }
+    }
+}
