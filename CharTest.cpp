@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <cstdio>
+#include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -88,4 +90,42 @@ void CharTest::removeFilterSemicolon(string& str)
             ch = ' ';
         }
     }
+}
+
+string CharTest::reverseLeftWords(string s, int n)
+{
+    ///方法一: 模拟思路处理方式
+    int len = s.size();
+	n = (n % len);
+    
+    string ss(s.begin(), s.begin() +  n);
+    cout << ss << endl;
+    int slow = 0, fast = n;
+    while (fast < len)
+    {
+        s[slow++] = s[fast++];
+    }
+    int index = 0;
+	while (slow < len)
+	{
+        s[slow++] = ss[index++];
+	}
+    return s;
+    ///一些思考：采用循环的方式，能够利用取余处理； 双指针实现同步移动问题；局部变量暂时缓存的方式。
+}
+void getNext(const string& s, vector<int>& next)
+{
+    int j = -1;
+    next[0] = j;
+    for (int i = 1; i < s.size(); i++)
+    {
+	    
+    }
+}
+
+int CharTest::strStr(string haystack, string needle)
+{
+    if (needle.size() == 0) return -1;
+    vector<int> next(needle.size(), 0);
+    getNext(needle, next);
 }
